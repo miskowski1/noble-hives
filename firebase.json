@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "noble-hives",
+      "public": "dist/noble-hives",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

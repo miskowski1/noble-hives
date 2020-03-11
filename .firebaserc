@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "noblehives": {
+      "hosting": {
+        "noble-hives": [
+          "noblehives"
+        ]
+      }
+    }
+  }
+}
