@@ -31,6 +31,11 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-        
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
     - name: GitHub Action for Firebase
       uses: w9jds/firebase-action@v1.3.0
+      env:
+        FIREBASE_TOKEN: 1//093x3HCvgjDqqCgYIARAAGAkSNwF-L9IrZvI7Me8ADmVLjp1HfzmVKn-KBB-7PigyiULvURvBB-KZPr2D5vm8gay7WCR20JE0ElA
