@@ -29,6 +29,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: action/checkout@v2
     - name: GitHub Action for Firebase
       uses: w9jds/firebase-action@v1.3.0
       env:
