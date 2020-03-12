@@ -1,4 +1,14 @@
-<mat-form-field>
-  <mat-label>email</mat-label>
-  <input matInput>
-</mat-form-field>
+<mat-card class="mat-typography">
+  <h1>Login</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>email</mat-label>
+      <input type="email" matInput formControlName="email" autocomplete="off" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>password</mat-label>
+      <input type="password" matInput formControlName="password" autocomplete="off" required>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Login</button>
+  </form>
+</mat-card>

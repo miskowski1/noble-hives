@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AuthGuard } from './auth/guard/auth.guard';
+import { SecureInnerPagesGuard } from './auth/guard/secure-inner-pages.guard';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([ 'login' ]);
-const redirectLoggedInToHives = () => redirectLoggedInTo([ 'hives' ]);
 
 const routes: Routes = [
   { path: '', redirectTo: 'hives', pathMatch: 'full' },
   {
     path: 'login',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-    ...canActivate(redirectLoggedInToHives)
+    canActivate: [ SecureInnerPagesGuard ]
   },
   {
     path: 'hives',
     loadChildren: () => import('./hive/hive.module').then(m => m.HiveModule),
-    ...canActivate(redirectUnauthorizedToLogin)
+    canActivate: [ AuthGuard ]
   }
 ];
 
