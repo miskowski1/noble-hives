@@ -1,6 +1,8 @@
 <mat-card class="mat-typography">
-  <h1>Login</h1>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h1>
+    <ng-container *ngIf="isRegister$ | async; else loginText">Register</ng-container>
+  </h1>
+  <form *ngIf="form$ | async as form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-container">
     <mat-form-field>
       <mat-label>email</mat-label>
       <input type="email" matInput formControlName="email" autocomplete="off" required>
@@ -9,6 +11,18 @@
       <mat-label>password</mat-label>
       <input type="password" matInput formControlName="password" autocomplete="off" required>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">Login</button>
+    <mat-form-field *ngIf="isRegister$ | async">
+      <mat-label>repeat password</mat-label>
+      <input type="password" matInput formControlName="repeatPassword" autocomplete="off" required>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">
+      <ng-container *ngIf="isRegister$ | async; else loginText">Register</ng-container>
+    </button>
   </form>
+  <button type="button" mat-fab (click)="isRegister$.next(!isRegister$.getValue())" color="primary" class="register-button">
+    <ng-container *ngIf="isRegister$ | async; else loginButton">-</ng-container>
+    <ng-template #loginButton>+</ng-template>
+  </button>
 </mat-card>
+
+<ng-template #loginText>Login</ng-template>
